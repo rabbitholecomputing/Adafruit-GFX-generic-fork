@@ -2,7 +2,7 @@
 #ifndef _ADAFRUIT_MBEDFORK_SSD1306_I2C_H
 #define _ADAFRUIT_MBEDFORK_SSD1306_I2C_H
 
-#include "mbed.h"
+#include "I2cControl.h"
 #include "Adafruit_GFX.h"
 #include "Adafruit_SSD1306.h"
 
