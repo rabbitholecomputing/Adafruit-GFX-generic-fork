@@ -29,13 +29,6 @@
     ],
     "name": "Adafruit_GFX_mbed_oled",
     "platforms": "*",
-    "dependencies":
-    [
-        {
-            "name": "IoAbstraction",
-            "authors": "DaveTcc"
-        }
-    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/davetcc/Adafruit-GFX-mbed-fork"
