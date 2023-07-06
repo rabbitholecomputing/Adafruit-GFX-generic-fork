@@ -22,5 +22,6 @@
 
 class I2C
 {
-    mi2c.write(i2cAddress, buff, buff_len);
-}
+    public:
+        void write(uint8_t i2cAddress, uint8_t* buff, size_t buff_len);
+};
