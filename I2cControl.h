@@ -19,7 +19,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 #pragma once
-
+#include <stdint.h>
+#include <stddef.h>
 class I2C
 {
     public:
