@@ -24,8 +24,8 @@ public:
      * @param rawHeight - The vertical number of pixels for the display, defaults to 32
      * @param rawWidth - The horizonal number of pixels for the display, defaults to 128
      */
-    Adafruit_SSD1306_I2c(I2C &i2c, PinName RST, uint8_t i2cAddress = SSD_I2C_ADDRESS, uint8_t rawHeight = 32, uint8_t rawWidth = 128, OledType displayType = SSD_1306)
-            : Adafruit_SSD1306(RST, rawHeight, rawWidth)
+    Adafruit_SSD1306_I2c(I2C &i2c, uint8_t i2cAddress = SSD_I2C_ADDRESS, uint8_t rawHeight = 32, uint8_t rawWidth = 128, OledType displayType = SSD_1306)
+            : Adafruit_SSD1306(rawHeight, rawWidth)
             , mi2c(i2c)
             , mi2cAddress(i2cAddress)
             , mDisplayType(displayType) { }
@@ -34,7 +34,7 @@ public:
 
     void command(uint8_t c) override
     {
-        char buff[2];
+        uint8_t buff[2];
         buff[0] = 0; // Command Mode
         buff[1] = c;
         mi2c.write(mi2cAddress, buff, sizeof(buff));
@@ -42,7 +42,7 @@ public:
 
     void data(uint8_t c) override
     {
-        char buff[2];
+        uint8_t buff[2];
         buff[0] = 0x40; // Data Mode
         buff[1] = c;
         mi2c.write(mi2cAddress, buff, sizeof(buff));
@@ -51,7 +51,7 @@ public:
 protected:
     void sendDisplayBuffer() override
     {
-        char buff[133];
+        uint8_t buff[133];
 
         auto rows = uint8_t(HEIGHT / 8);
         uint16_t col = 0;

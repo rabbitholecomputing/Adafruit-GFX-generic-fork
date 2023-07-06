@@ -20,7 +20,6 @@ All text above, and the splash screen below must be included in any redistributi
  *  Modified by Neal Horman 7/14/2012 for use in mbed
  */
 
-#include "mbed.h"
 #include "Adafruit_SSD1306.h"
 
 #define SSD1306_SETCONTRAST 0x81
@@ -45,19 +44,11 @@ All text above, and the splash screen below must be included in any redistributi
 #define SSD1306_SEGREMAP 0xA0
 #define SSD1306_CHARGEPUMP 0x8D
 
-
+#ifndef min
+#define min(a, b) (((a) < (b)) ? (a) : (b))
+#endif
 void Adafruit_SSD1306::begin(uint8_t vccstate)
 {
-    if(rst.is_connected()) {
-        rst = 1;
-        wait_us(1000);
-        // bring reset low
-        rst = 0;
-        // wait 10ms
-        wait_us(10000);
-        // bring out of reset
-        rst = 1;
-    }
 
     // turn on VCC (9V?)
     // VDD (3.3V) goes high at start, lets just chill for a ms
@@ -232,9 +223,8 @@ void Adafruit_SSD1306::splash(void)
 #endif
 }
 
-Adafruit_SSD1306::Adafruit_SSD1306(PinName RST, uint8_t rawHeight, uint8_t rawWidth)
+Adafruit_SSD1306::Adafruit_SSD1306(uint8_t rawHeight, uint8_t rawWidth)
         : Adafruit_GFX(rawWidth,rawHeight)
-        , rst(RST,false)
 {
     buffSize = (rawHeight / 8) * rawWidth;
     buffer = new uint8_t[buffSize];

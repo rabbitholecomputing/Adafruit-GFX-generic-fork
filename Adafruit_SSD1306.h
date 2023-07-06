@@ -23,7 +23,6 @@ All text above, and the splash screen must be included in any redistribution
 #ifndef _ADAFRUIT_SSD1306_H_
 #define _ADAFRUIT_SSD1306_H_
 
-#include "mbed.h"
 #include "Adafruit_GFX.h"
 
 #ifndef PROGMEM
@@ -44,13 +43,12 @@ class Adafruit_SSD1306 : public Adafruit_GFX
 {
 protected:
     virtual void sendDisplayBuffer() = 0;
-    DigitalOut rst;
 
     // the memory buffer for the LCD
     uint8_t* buffer;
     size_t buffSize;
 public:
-	explicit Adafruit_SSD1306(PinName RST, uint8_t rawHeight = 32, uint8_t rawWidth = 128);
+	explicit Adafruit_SSD1306(uint8_t rawHeight = 32, uint8_t rawWidth = 128);
 
 	void begin(uint8_t switchvcc = SSD1306_SWITCHCAPVCC);
 	

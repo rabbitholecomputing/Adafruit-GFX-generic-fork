@@ -24,8 +24,6 @@ All text above must be included in any redistribution
 #include "Adafruit_GFX_Config.h"
 #include "gfxfont.h"
 
-#define pgm_read_byte(x) (*x)
-
 static inline void swap(int16_t &a, int16_t &b) {
     int16_t t = a;
 
@@ -61,6 +59,10 @@ class Adafruit_GFX
         void print(const char* sz) {
             auto len = strlen(sz);
             for(int i=0;i<len;i++) write(sz[i]);
+        }
+        void println(const char* sz) {
+          print(sz);
+          write('\n');
         }
 #endif
 public:
@@ -260,7 +262,6 @@ public:
     /**********************************************************************/
     void cp437(bool x = true) { _cp437 = x; }
 
-    using Print::write;
 
     virtual size_t write(uint8_t);
 
